@@ -2469,7 +2469,7 @@ func run(cmd *cobra.Command, _ []string) {
 					Required: false,
 					Default:  autoscalerMaxNodeProvisionTime,
 					Validators: []interactive.Validator{
-						durationStringValidator,
+						DurationStringValidator,
 					},
 				})
 				if err != nil {
@@ -2477,7 +2477,7 @@ func run(cmd *cobra.Command, _ []string) {
 					os.Exit(1)
 				}
 			}
-			if err := durationStringValidator(autoscalerMaxNodeProvisionTime); err != nil {
+			if err := DurationStringValidator(autoscalerMaxNodeProvisionTime); err != nil {
 				r.Reporter.Errorf("%s", err)
 				os.Exit(1)
 			}
@@ -2633,7 +2633,7 @@ func run(cmd *cobra.Command, _ []string) {
 					Default:  scaleDownUnneededTime,
 					Required: false,
 					Validators: []interactive.Validator{
-						durationStringValidator,
+						DurationStringValidator,
 					},
 				})
 				if err != nil {
@@ -2641,7 +2641,7 @@ func run(cmd *cobra.Command, _ []string) {
 					os.Exit(1)
 				}
 
-				if err := durationStringValidator(scaleDownUnneededTime); err != nil {
+				if err := DurationStringValidator(scaleDownUnneededTime); err != nil {
 					r.Reporter.Errorf("Expected a valid value for %s: %s", autoscalerScaleDownUnneededTimeFlag, err)
 					os.Exit(1)
 				}
@@ -2655,7 +2655,7 @@ func run(cmd *cobra.Command, _ []string) {
 					Default:  scaleDownUtilizationThreshold,
 					Required: false,
 					Validators: []interactive.Validator{
-						zeroToOneFloatValidator,
+						ZeroToOneFloatValidator,
 					},
 				})
 				if err != nil {
@@ -2671,7 +2671,7 @@ func run(cmd *cobra.Command, _ []string) {
 					Default:  scaleDownDelayAfterAdd,
 					Required: false,
 					Validators: []interactive.Validator{
-						durationStringValidator,
+						DurationStringValidator,
 					},
 				})
 				if err != nil {
@@ -2680,7 +2680,7 @@ func run(cmd *cobra.Command, _ []string) {
 				}
 			}
 
-			if err := durationStringValidator(scaleDownDelayAfterAdd); err != nil {
+			if err := DurationStringValidator(scaleDownDelayAfterAdd); err != nil {
 				r.Reporter.Errorf("Expected a valid value for %s: %s", autoscalerScaleDownDelayAfterAddFlag, err)
 				os.Exit(1)
 			}
@@ -2692,7 +2692,7 @@ func run(cmd *cobra.Command, _ []string) {
 					Default:  scaleDownDelayAfterDelete,
 					Required: false,
 					Validators: []interactive.Validator{
-						durationStringValidator,
+						DurationStringValidator,
 					},
 				})
 				if err != nil {
@@ -2700,7 +2700,7 @@ func run(cmd *cobra.Command, _ []string) {
 					os.Exit(1)
 				}
 
-				if err := durationStringValidator(scaleDownDelayAfterDelete); err != nil {
+				if err := DurationStringValidator(scaleDownDelayAfterDelete); err != nil {
 					r.Reporter.Errorf("Expected a valid value for %s: %s", autoscalerScaleDownDelayAfterDeleteFlag, err)
 					os.Exit(1)
 				}
@@ -2713,7 +2713,7 @@ func run(cmd *cobra.Command, _ []string) {
 					Default:  scaleDownDelayAfterFailure,
 					Required: false,
 					Validators: []interactive.Validator{
-						durationStringValidator,
+						DurationStringValidator,
 					},
 				})
 				if err != nil {
@@ -2721,7 +2721,7 @@ func run(cmd *cobra.Command, _ []string) {
 					os.Exit(1)
 				}
 
-				if err := durationStringValidator(scaleDownDelayAfterFailure); err != nil {
+				if err := DurationStringValidator(scaleDownDelayAfterFailure); err != nil {
 					r.Reporter.Errorf("Expected a valid value for %s: %s", autoscalerScaleDownDelayAfterFailureFlag, err)
 					os.Exit(1)
 				}
@@ -3518,7 +3518,7 @@ func handleOidcConfigOptions(r *rosa.Runtime, cmd *cobra.Command, isSTS bool, is
 	return oidcConfig
 }
 
-func zeroToOneFloatValidator(val interface{}) error {
+func ZeroToOneFloatValidator(val interface{}) error {
 	if val == "" {
 		return nil
 	}
@@ -3529,7 +3529,7 @@ func zeroToOneFloatValidator(val interface{}) error {
 	return nil
 }
 
-func durationStringValidator(val interface{}) error {
+func DurationStringValidator(val interface{}) error {
 	if val == "" {
 		return nil
 	}
